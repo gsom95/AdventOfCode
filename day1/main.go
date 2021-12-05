@@ -19,14 +19,18 @@ func main() {
 		log.Fatalf("cannot open %s: %v\n", *filename, err)
 	}
 	part1(input)
-	input.Close()
+	if err := input.Close(); err != nil {
+		log.Println(err)
+	}
 
 	input, err = os.Open(*filename)
 	if err != nil {
 		log.Fatalf("cannot open %s: %v\n", *filename, err)
 	}
 	part2(input)
-	input.Close()
+	if err := input.Close(); err != nil {
+		log.Println(err)
+	}
 }
 
 func part1(input io.ReadCloser) {
